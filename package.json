@@ -1,0 +1,49 @@
+{
+  "name": "aprs-passcode",
+  "version": "0.0.1",
+  "description": "a web tool to generate/calculate passcode of aprs for your casllsign.",
+  "keywords": [
+    "aprs",
+    "passcode",
+    "hamradio"
+  ],
+  "license": "MPL-2.0",
+  "author": "uiolee (https://github.com/uiolee)",
+  "scripts": {
+    "build": "rm -rf dist && parcel build --no-cache --no-autoinstall --detailed-report",
+    "postbuild": "cp -rf assets/. dist/",
+    "prebuild": "git rev-parse HEAD > .githash",
+    "clean": "rm -rf dist .parcel-cache",
+    "dev": "parcel serve --no-cache --no-autoinstall --watch-dir src",
+    "sort": "pnpm dlx sort-package-json",
+    "sync": "browser-sync dist -w -f dist --open external",
+    "watch": "parcel watch --no-cache --no-autoinstall --watch-dir src --no-hmr"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "^2.12.0",
+    "@parcel/plugin": "^2.12.0",
+    "cssnano": "^7.0.1",
+    "htmlnano": "^2.1.1",
+    "parcel": "^2.12.0",
+    "prettier": "^3.2.5",
+    "terser": "^5.31.0"
+  },
+  "peerDependencies": {
+    "cssnano": "^7.0.1",
+    "htmlnano": "^2.1.1",
+    "terser": "^5.31.0"
+  },
+  "packageManager": "pnpm@9.1.2+sha1.907f57a52517de34399d66401bf220a549e47b57",
+  "targets": {
+    "frontend": {
+      "source": [
+        "src/index.html"
+      ],
+      "outputFormat": "esmodule",
+      "isLibrary": false,
+      "distDir": "./dist",
+      "publicUrl": ".",
+      "context": "browser"
+    }
+  }
+}
