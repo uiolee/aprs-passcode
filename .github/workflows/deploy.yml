@@ -1,0 +1,86 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "src/**"
+      - "package.json"
+      - ".github/workflows/deploy.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "deploy"
+  cancel-in-progress: false
+
+env:
+  default_node_version: "lts/*"
+  artifact_name: "github-pages"
+  default_destination: "dist"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.default_node_version }}
+          architecture: x64
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm i
+      - name: build
+        run: pnpm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.default_destination }}
+
+  deploy_ghp:
+    name: Deploy to Github Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy_surge:
+    name: Deploy to Surge
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: "surge"
+      url: ${{ steps.get_url.outputs.url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}
+          path: ${{ env.default_destination }}
+      - run: tar -xvf ${{ env.default_destination }}/artifact.tar -C ${{ env.default_destination }}
+      - run: npm install -g surge
+      - run: surge ${{ env.default_destination }} --token ${{ secrets.SURGE_TOKEN }}
+      - run: echo -n "url=$(cat ${{ env.default_destination }}/CNAME)" >> "$GITHUB_OUTPUT"
+        id: get_url
