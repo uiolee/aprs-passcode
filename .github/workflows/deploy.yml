@@ -2,11 +2,11 @@ name: Deploy
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
     paths:
-      - "src/**"
-      - "package.json"
-      - ".github/workflows/deploy.yml"
+      - 'src/**'
+      - 'package.json'
+      - '.github/workflows/deploy.yml'
 
   workflow_dispatch:
 
@@ -14,13 +14,14 @@ permissions:
   contents: read
 
 concurrency:
-  group: "deploy"
+  group: 'deploy'
   cancel-in-progress: false
 
 env:
-  default_node_version: "lts/*"
-  artifact_name: "github-pages"
-  default_destination: "dist"
+  default_node_version: 'lts/*'
+  artifact_name: 'github-pages'
+  default_destination: 'build'
+  temp_dir: '.temp'
 
 jobs:
   build:
@@ -40,7 +41,7 @@ jobs:
         with:
           node-version: ${{ env.default_node_version }}
           architecture: x64
-          cache: "pnpm"
+          cache: 'pnpm'
       - name: Install Dependencies
         run: pnpm i
       - name: build
@@ -72,14 +73,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: "surge"
+      name: 'surge'
       url: ${{ steps.get_url.outputs.url }}
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: ${{ env.artifact_name }}
-          path: ${{ env.default_destination }}
-      - run: tar -xvf ${{ env.default_destination }}/artifact.tar -C ${{ env.default_destination }}
+          path: ${{ env.temp_dir }}
+      - run: |
+          mkdir -p ${{ env.default_destination }} || echo
+          tar -xvf ${{ env.temp_dir }}/artifact.tar -C ${{ env.default_destination }}
       - run: npm install -g surge
       - run: surge ${{ env.default_destination }} --token ${{ secrets.SURGE_TOKEN }}
       - run: echo -n "url=$(cat ${{ env.default_destination }}/CNAME)" >> "$GITHUB_OUTPUT"
