@@ -1,0 +1,9 @@
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+User-Agent: *
+Content-Usage: tdm=n, search=y, inference=y
+Allow: /
