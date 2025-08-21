@@ -25,7 +25,7 @@
 				<details class="dropdown">
 					<summary> {m.language()}: <code>{getLocale()}</code></summary>
 					<ul dir="rtl">
-						{#each locales as locale}
+						{#each locales as locale (locale)}
 							<li>
 								<a
 									onclick={() => {

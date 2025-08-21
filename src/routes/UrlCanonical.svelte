@@ -23,7 +23,7 @@
 
 <link rel="canonical" href={urlCanonical.href} />
 {#if Object.keys(alternateUrls).length > 0}
-	{#each Object.entries(alternateUrls) as [locale, url]}
+	{#each Object.entries(alternateUrls) as [locale, url] (locale)}
 		<link rel="alternate" hreflang={locale} href={url.href} />
 	{/each}
 {/if}
