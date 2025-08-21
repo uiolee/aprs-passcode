@@ -49,7 +49,7 @@
 				id="callsign"
 				type="text"
 				name="callsign"
-				placeholder="{m.Callsign()}"
+				placeholder="{m.inputCallsign()}"
 				autocomplete="callsign"
 				bind:value={callsignInput}
 			/>
@@ -60,7 +60,6 @@
 				value="{m.submit()}"
 			/>
 		</fieldset>
-		<small id="callsign-helper">{m.callsignInputTip()}</small>
 	</form>
 	<small id="log">{log}</small>
 </article>

@@ -7,6 +7,7 @@
   "copyFail": "Failed copy!",
   "description": "A web tool to generate/calculate passcode of APRS for your casllsign.",
   "hello_world": "Hello, {name} from en!",
+  "inputCallsign": "Input your Callsign",
   "language": "Language",
   "submit": "submit",
   "title": "APRS Passcode Calculator"

@@ -7,6 +7,7 @@
   "copyFail": "复制失败！",
   "description": "一个为无线电呼号计算 APRS 验证码的网页工具。",
   "hello_world": "你好, 来自 zh 的{name}！",
+  "inputCallsign": "输入呼号",
   "language": "语言",
   "submit": "提交",
   "title": "APRS 验证码计算器"
