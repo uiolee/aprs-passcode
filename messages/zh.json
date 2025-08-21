@@ -1,4 +1,6 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "hello_world": "你好, 来自 zh 的{name}！"
+  "hello_world": "你好, 来自 zh 的{name}！",
+  "language": "语言",
+  "title": "APRS 验证码计算器"
 }
