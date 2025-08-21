@@ -1,5 +1,6 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "description": "一个为无线电呼号计算 APRS 验证码的网页工具。",
   "hello_world": "你好, 来自 zh 的{name}！",
   "language": "语言",
   "title": "APRS 验证码计算器"
