@@ -9,6 +9,8 @@
 
 	import { page } from '$app/state';
 
+	import UrlCanonical from './UrlCanonical.svelte';
+
 	let { children } = $props();
 
 	onMount(() => {
@@ -18,7 +20,9 @@
 	});
 </script>
 
-<svelte:head></svelte:head>
+<svelte:head>
+	<UrlCanonical pageUrl={page.url} />
+</svelte:head>
 
 <!--
 <div style="display:none">
