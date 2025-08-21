@@ -6,7 +6,11 @@
 
 	import { onMount } from 'svelte';
 	import { Stat } from './shared.svelte';
+
+	import { page } from '$app/state';
+
 	let { children } = $props();
+
 	onMount(() => {
 		setTimeout(() => {
 			Stat.isBusy = true;
@@ -15,6 +19,16 @@
 </script>
 
 <svelte:head></svelte:head>
+
+<!--
+<div style="display:none">
+	+ {#each locales as locale}
+		+ <a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+		+
+	{/each}
+	+
+</div>
+-->
 
 <div class="app" id="body">
 	<Header />
