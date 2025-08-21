@@ -44,7 +44,7 @@
 </header>
 
 <style>
-    nav ul li div {
-        cursor: pointer;
-    }
+	nav ul li div {
+		cursor: pointer;
+	}
 </style>
