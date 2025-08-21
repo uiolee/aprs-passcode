@@ -42,15 +42,13 @@
 
 <article>
 	<form>
-		<fieldset role="group">
+		<fieldset role="group" data-tooltip="在此处输入你的呼号。Input your callsign here.">
 			<input
 				id="callsign"
 				type="text"
 				name="callsign"
 				placeholder="呼号/Callsign"
-				autocomplete="on"
-				data-tooltip="在此处输入你的呼号。Input your callsign here."
-				required
+				autocomplete="callsign"
 				bind:value={callsignInput}
 			/>
 			<input
