@@ -63,11 +63,11 @@
 	<small id="log">{log}</small>
 </article>
 <article>
-	<label for="show-callsign">呼号/Callsign</label>
+	<label for="callsignStd">呼号/Callsign</label>
 	<fieldset role="group">
-		<input name="show-callsign" id="show-callsign" bind:value={callsignStd} readonly />
+		<input name="callsignStd" id="callsignStd" bind:value={callsignStd} readonly />
 		<input
-			id="copy"
+			id="copy-callsignStd"
 			type="button"
 			class="secondary copy"
 			disabled={!clipboard || callsignStd.length <= 0}
@@ -79,7 +79,7 @@
 	<fieldset role="group">
 		<input name="passcode" id="passcode" bind:value={passcode} readonly />
 		<input
-			id="copy"
+			id="copy-passcode"
 			type="button"
 			class="secondary copy"
 			disabled={!clipboard || passcode.length <= 0}
@@ -90,15 +90,16 @@
 </article>
 
 <style>
-	#callsign,
-	#passcode,
-	#show-callsign {
-		font-family: 'Fira Mono', Consolas, 'Courier New', Courier, ui-monospace, monospace;
-		font-weight: bold;
-	}
-	#passcode,
-	#show-callsign {
-		text-align: center;
-		font-size: xx-large;
-	}
+    #callsign,
+    #passcode,
+    #callsignStd {
+        font-family: 'Fira Mono', Consolas, 'Courier New', Courier, ui-monospace, monospace;
+        font-weight: bold;
+    }
+
+    #passcode,
+    #callsignStd {
+        text-align: center;
+        font-size: xx-large;
+    }
 </style>
