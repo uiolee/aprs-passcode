@@ -1,7 +1,13 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "Callsign": "呼号",
+  "Passcode": "验证码",
+  "callsignInputTip": "在此处输入你的呼号。",
+  "copy": "复制",
+  "copyFail": "复制失败！",
   "description": "一个为无线电呼号计算 APRS 验证码的网页工具。",
   "hello_world": "你好, 来自 zh 的{name}！",
   "language": "语言",
+  "submit": "提交",
   "title": "APRS 验证码计算器"
 }

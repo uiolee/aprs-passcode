@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { calcPass, cleanse, getSearchParams } from '$lib/utils';
 
+	import { m } from '$lib/paraglide/messages';
+
 	let callsignInput: string = $state('');
 	let callsignStd: string = $derived(cleanse(callsignInput));
 	let passcode: string = $derived(callsignStd.length > 0 ? String(calcPass(callsignStd)) : '');
@@ -20,7 +22,7 @@
 					}, 100);
 				},
 				(err) => {
-					log = `复制失败！ Failed to copy! ${err}`;
+					log = `${m.copyFail()} ${err}`;
 				}
 			)
 			.finally(() => {
@@ -42,12 +44,12 @@
 
 <article>
 	<form>
-		<fieldset role="group" data-tooltip="在此处输入你的呼号。Input your callsign here.">
+		<fieldset role="group" data-tooltip={m.callsignInputTip()}>
 			<input
 				id="callsign"
 				type="text"
 				name="callsign"
-				placeholder="呼号/Callsign"
+				placeholder="{m.Callsign()}"
 				autocomplete="callsign"
 				bind:value={callsignInput}
 			/>
@@ -55,15 +57,15 @@
 				id="submit"
 				type="submit"
 				disabled={callsignInput.length <= 0}
-				value="计算/calculate"
+				value="{m.submit()}"
 			/>
 		</fieldset>
-		<small id="callsign-helper"> 在此处输入你的呼号。Input your callsign here. </small>
+		<small id="callsign-helper">{m.callsignInputTip()}</small>
 	</form>
 	<small id="log">{log}</small>
 </article>
 <article>
-	<label for="callsignStd">呼号/Callsign</label>
+	<label for="callsignStd">{m.Callsign()}</label>
 	<fieldset role="group">
 		<input name="callsignStd" id="callsignStd" bind:value={callsignStd} readonly />
 		<input
@@ -72,10 +74,10 @@
 			class="secondary copy"
 			disabled={!clipboard || callsignStd.length <= 0}
 			onclick={copyToClipboard}
-			value="复制/copy"
+			value="{m.copy()}"
 		/>
 	</fieldset>
-	<label for="passcode">通行码/Passcode</label>
+	<label for="passcode">{m.Passcode()}</label>
 	<fieldset role="group">
 		<input name="passcode" id="passcode" bind:value={passcode} readonly />
 		<input
@@ -84,7 +86,7 @@
 			class="secondary copy"
 			disabled={!clipboard || passcode.length <= 0}
 			onclick={copyToClipboard}
-			value="复制/copy"
+			value="{m.copy()}"
 		/>
 	</fieldset>
 </article>
