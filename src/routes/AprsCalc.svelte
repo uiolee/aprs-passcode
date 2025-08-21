@@ -53,12 +53,15 @@
 				autocomplete="callsign"
 				bind:value={callsignInput}
 			/>
-			<input
-				id="submit"
-				type="submit"
-				disabled={callsignInput.length <= 0}
-				value="{m.submit()}"
-			/>
+			{#if true}
+				<input
+					id="reset-callsign"
+					type="reset"
+					class="outline contrast"
+					disabled={callsignInput.length <= 0}
+					value="{m.reset()}"
+				/>
+			{/if}
 		</fieldset>
 	</form>
 	<small id="log">{log}</small>
@@ -82,7 +85,7 @@
 		<input
 			id="copy-passcode"
 			type="button"
-			class="secondary copy"
+			class="copy"
 			disabled={!clipboard || passcode.length <= 0}
 			onclick={copyToClipboard}
 			value="{m.copy()}"

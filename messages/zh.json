@@ -9,6 +9,7 @@
   "hello_world": "你好, 来自 zh 的{name}！",
   "inputCallsign": "输入呼号",
   "language": "语言",
+  "reset": "重置",
   "submit": "提交",
   "title": "APRS 验证码计算器"
 }
