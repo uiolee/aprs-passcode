@@ -10,7 +10,7 @@ const versionText = (() => {
 	const buildDate = CI ? nowISO.replace(/(?=T).+?(?=Z)/, '') : nowISO;
 	const prefix = CI ? 'Version' : 'Develop';
 
-	return `${prefix}: ${commitHash} (${buildDate})`;
+	return `${commitHash} (${buildDate})`;
 })();
 
 console.log(versionText);
