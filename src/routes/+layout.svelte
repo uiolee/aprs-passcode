@@ -34,12 +34,10 @@
 </div>
 -->
 
-<div class="app" id="body">
-	<Header />
+<Header />
 
-	<main class="container">
-		{@render children()}
-	</main>
+<main class="container">
+	{@render children()}
+</main>
 
-	<Footer />
-</div>
+<Footer />
