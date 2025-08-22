@@ -12,8 +12,9 @@
 		<ul>
 			<li>
 				<div
+					id="title"
 					onclick={() => {
-						location.replace('');
+						location.replace('/');
 					}}
 				>
 					<strong aria-busy={!Stat.isBusy}>{m.title()}</strong>
@@ -44,7 +45,7 @@
 </header>
 
 <style>
-    nav ul li div {
+    #title {
         cursor: pointer;
     }
 </style>
