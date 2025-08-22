@@ -44,14 +44,15 @@
 
 <article>
 	<form>
-		<fieldset role="group" data-tooltip={m.callsignInputTip()}>
+		<fieldset data-tooltip={m.callsignInputTip()} role="group">
 			<input
+				autocomplete="callsign"
+				autofocus
+				bind:value={callsignInput}
 				id="callsign"
-				type="text"
 				name="callsign"
 				placeholder="{m.inputCallsign()}"
-				autocomplete="callsign"
-				bind:value={callsignInput}
+				type="text"
 			/>
 			{#if true}
 				<input
@@ -69,25 +70,25 @@
 <article>
 	<label for="callsignStd">{m.Callsign()}</label>
 	<fieldset role="group">
-		<input name="callsignStd" id="callsignStd" bind:value={callsignStd} readonly />
+		<input bind:value={callsignStd} id="callsignStd" name="callsignStd" readonly />
 		<input
-			id="copy-callsignStd"
-			type="button"
 			class="secondary copy"
 			disabled={!clipboard || callsignStd.length <= 0}
+			id="copy-callsignStd"
 			onclick={copyToClipboard}
+			type="button"
 			value="{m.copy()}"
 		/>
 	</fieldset>
 	<label for="passcode">{m.Passcode()}</label>
 	<fieldset role="group">
-		<input name="passcode" id="passcode" bind:value={passcode} readonly />
+		<input bind:value={passcode} id="passcode" name="passcode" readonly />
 		<input
-			id="copy-passcode"
-			type="button"
 			class="copy"
 			disabled={!clipboard || passcode.length <= 0}
+			id="copy-passcode"
 			onclick={copyToClipboard}
+			type="button"
 			value="{m.copy()}"
 		/>
 	</fieldset>
