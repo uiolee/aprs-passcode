@@ -13,7 +13,7 @@
 			<li>
 				<div
 					onclick={() => {
-						location.replace('/');
+						location.replace('');
 					}}
 				>
 					<strong aria-busy={!Stat.isBusy}>{m.title()}</strong>
@@ -30,7 +30,7 @@
 								<a
 									onclick={() => {
 										setLocale(locale);
-										location.replace(localizeHref(page.url.pathname, { locale }));
+										// location.replace(localizeHref(page.url.pathname, { locale }));
 									}}
 									href={localizeHref(page.url.pathname, { locale })}><code>{locale}</code></a
 								>
@@ -44,7 +44,7 @@
 </header>
 
 <style>
-	nav ul li div {
-		cursor: pointer;
-	}
+    nav ul li div {
+        cursor: pointer;
+    }
 </style>
