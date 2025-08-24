@@ -1,3 +1,3 @@
-import htmlnano from "htmlnano";
+import htmlnano from 'htmlnano';
 const { max } = htmlnano.presets;
 export default max;

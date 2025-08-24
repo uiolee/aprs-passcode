@@ -1,15 +1,15 @@
 #body {
-	width: 100%;
-	margin: 0;
+  width: 100%;
+  margin: 0;
 }
 #body > header,
 #body > main,
 #body > footer {
-	padding-block: var(--pico-block-spacing-vertical);
+  padding-block: var(--pico-block-spacing-vertical);
 }
 :root {
-	--custom-font-family:
-		Menlo, Monaco, 'Fira Mono', 'Courier New', Consolas, 'Liberation Mono', ui-monospace, monospace,
-		var(--pico-font-family-emoji);
-	--pico-font-family: var(--custom-font-family) !important;
+  --custom-font-family:
+    Menlo, Monaco, 'Fira Mono', 'Courier New', Consolas, 'Liberation Mono', ui-monospace, monospace,
+    var(--pico-font-family-emoji);
+  --pico-font-family: var(--custom-font-family) !important;
 }

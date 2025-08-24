@@ -21,10 +21,10 @@
 	}
 </script>
 
-<link rel="canonical" href={urlCanonical.href} />
+<link href={urlCanonical.href} rel="canonical" />
 {#if Object.keys(alternateUrls).length > 0}
-	{#each Object.entries(alternateUrls) as [locale, url] (locale)}
-		<link rel="alternate" hreflang={locale} href={url.href} />
-	{/each}
+  {#each Object.entries(alternateUrls) as [locale, url] (locale)}
+    <link rel="alternate" hreflang={locale} href={url.href} />
+  {/each}
 {/if}
-<link rel="alternate" hreflang="x-default" href={urlDefault.href} />
+<link href={urlDefault.href} hreflang="x-default" rel="alternate" />
