@@ -1,5 +1,7 @@
 <script lang="ts">
   const { href, integrity } = $props();
+  import { Stat } from './shared.svelte';
+  $inspect(Stat.cssIsLoad);
 </script>
 
 <link
@@ -18,6 +20,8 @@
     } catch (e) {
       console.debug(e);
     }
+
+    Stat.cssIsLoad = true;
   }}
   referrerpolicy="no-referrer"
   rel="preload"

@@ -9,6 +9,7 @@
   "hello_world": "Hello, {name} from en!",
   "inputCallsign": "Input your Callsign",
   "language": "Language",
+  "loading": "Loading...",
   "noscriptMessage": "Your browser does not support JavaScript, or JavaScript is disabled. \nPlease enable JavaScript and try again. ",
   "noscriptTitle": "JavaScript is REQUIRED!",
   "reset": "reset",

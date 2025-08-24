@@ -10,18 +10,24 @@
   <nav>
     <ul></ul>
     <ul>
-      <li>
-        <div
-          id="title"
-          onclick={() => {
-            location.replace('/');
-          }}
-          role="link"
-          tabindex="-1"
-        >
-          <strong aria-busy={!Stat.isBusy}>{m.title()}</strong>
-        </div>
-      </li>
+      {#if Stat.cssIsLoad}
+        <li>
+          <div
+            id="title"
+            onclick={() => {
+              location.replace('/');
+            }}
+            role="link"
+            tabindex="-1"
+          >
+            <strong aria-busy={!Stat.isBusy}>{m.title()}</strong>
+          </div>
+        </li>
+      {:else if !Stat.cssIsLoad}
+        <li aria-busy="true">
+          <h2><strong>CSS {m.loading()}</strong></h2>
+        </li>
+      {/if}
     </ul>
     <ul>
       <li>
