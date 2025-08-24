@@ -16,6 +16,8 @@
           onclick={() => {
             location.replace('/');
           }}
+          role="link"
+          tabindex="-1"
         >
           <strong aria-busy={!Stat.isBusy}>{m.title()}</strong>
         </div>
