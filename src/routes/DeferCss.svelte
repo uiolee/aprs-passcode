@@ -7,8 +7,17 @@
   crossorigin="anonymous"
   {href}
   {integrity}
-  onload={(ev) => {
-    ev.target.rel = 'stylesheet';
+  onload={function (ev) {
+    try {
+      this.rel = 'stylesheet';
+    } catch (e) {
+      console.debug(e);
+    }
+    try {
+      ev.target.rel = 'stylesheet';
+    } catch (e) {
+      console.debug(e);
+    }
   }}
   referrerpolicy="no-referrer"
   rel="preload"
