@@ -37,4 +37,9 @@ export default ts.config(
       },
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+    },
+  },
 );
