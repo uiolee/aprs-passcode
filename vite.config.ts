@@ -1,7 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import { execSync } from 'node:child_process';
+
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
+
+// @ts-expect-error notypes
+import { execSync } from 'node:child_process';
 
 const versionText = (() => {
   const CI = Boolean(process.env.CI || false);
@@ -21,7 +24,7 @@ export default defineConfig({
     paraglideVitePlugin({
       project: './project.inlang',
       outdir: './src/lib/paraglide',
-      strategy: ['url', 'localStorage', 'cookie', 'preferredLanguage', 'baseLocale'],
+      strategy: ['url', 'localStorage', 'preferredLanguage', 'baseLocale'],
       disableAsyncLocalStorage: true,
     }),
   ],
