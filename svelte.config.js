@@ -18,6 +18,22 @@ const config = {
       precompress: CI,
       strict: true,
     }),
+    csp: {
+      directives: {
+        'default-src': ['none'],
+        'base-uri': ['self'],
+        'connect-src': ['self', 'https://cdnjs.cloudflare.com', 'https://cloudflareinsights.com'],
+        'font-src': ['self', 'https:'],
+        'form-action': ['self'],
+        'frame-ancestors': ['self'],
+        'img-src': ['self', 'https:', 'data:'],
+        'manifest-src': ['self'],
+        'object-src': ['none'],
+        'script-src': ['self', 'unsafe-inline'],
+        'style-src': ['self', 'https:', 'unsafe-inline'],
+        'worker-src': ['self'],
+      },
+    },
   },
 };
 
