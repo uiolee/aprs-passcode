@@ -5,7 +5,6 @@
 		deLocalizeUrl,
 		localizeUrl,
 		locales,
-		extractLocaleFromUrl
 	} from '$lib/paraglide/runtime';
 	import { URLPrefix } from './shared.svelte';
 
@@ -14,10 +13,8 @@
 	const alternateUrls: { [K in (typeof locales)[number]]?: URL } = {};
 	const urlDefault = deLocalizeUrl(urlCanonical);
 	for (const locale of locales) {
-		if (locale !== extractLocaleFromUrl(pageUrl)) {
 			const urlLocalized = localizeUrl(urlCanonical, { locale });
 			alternateUrls[locale] = urlLocalized;
-		}
 	}
 </script>
 
