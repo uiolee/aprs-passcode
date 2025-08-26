@@ -29,7 +29,7 @@ const config = {
         'img-src': ['self', 'https:', 'data:'],
         'manifest-src': ['self'],
         'object-src': ['none'],
-        'script-src': ['self', 'unsafe-inline'],
+        'script-src': ['self', 'https://static.cloudflareinsights.com', 'unsafe-inline'],
         'style-src': ['self', 'https:', 'unsafe-inline'],
         'worker-src': ['self'],
       },
