@@ -3,6 +3,7 @@
   import { calcPass, cleanse, getSearchParams } from '$lib/utils';
 
   import { m } from '$lib/paraglide/messages';
+  import { baseLocale, getLocale } from '$lib/paraglide/runtime';
 
   let callsignInput: string = $state('');
   let callsignStd: string = $derived(cleanse(callsignInput));
@@ -58,6 +59,8 @@
     }
   });
 
+  const locale = getLocale();
+
   $inspect(log);
   $inspect(callsignInput, callsignStd, passcode).with(console.debug);
 </script>
@@ -94,7 +97,12 @@
   <small id="log">{log}</small>
 </article>
 <article>
-  <label for="callsignStd">{m.Callsign()}</label>
+  <label for="callsignStd"
+    >{m.Callsign()}
+    {#if locale !== baseLocale}<span lang={baseLocale}
+        >{m.Callsign({}, { locale: baseLocale })}</span
+      >{/if}</label
+  >
   <fieldset role="group">
     <input bind:value={callsignStd} id="callsignStd" name="callsignStd" readonly />
     <input
@@ -106,7 +114,12 @@
       value={m.copy()}
     />
   </fieldset>
-  <label for="passcode">{m.Passcode()}</label>
+  <label for="passcode"
+    >{m.Passcode()}
+    {#if locale !== baseLocale}<span lang={baseLocale}
+        >{m.Passcode({}, { locale: baseLocale })}</span
+      >{/if}</label
+  >
   <fieldset role="group">
     <input bind:value={passcode} id="passcode" name="passcode" readonly />
     <input
