@@ -10,26 +10,34 @@
   let log: string = $state('');
   let clipboard: boolean = $state(Boolean(navigator.clipboard));
 
+  $effect(() => {
+    let n: number = 0;
+    if (log !== '') {
+      n = setTimeout(() => {
+        log = '';
+      }, 3000);
+    }
+    return () => {
+      if (n) {
+        clearTimeout(n);
+      }
+    };
+  });
+
   function copyToClipboard(ev: MouseEvent) {
     const value = ev.target?.previousElementSibling?.value;
-    navigator.clipboard
-      .writeText(value)
-      .then(
-        (res) => {
-          ev.target.disabled = true;
-          setTimeout(() => {
-            ev.target.disabled = false;
-          }, 100);
-        },
-        (err) => {
-          log = `${m.copyFail()} ${err}`;
-        },
-      )
-      .finally(() => {
+    return navigator.clipboard.writeText(value).then(
+      (res) => {
+        ev.target.disabled = true;
         setTimeout(() => {
-          log = '';
-        }, 5000);
-      });
+          ev.target.disabled = false;
+        }, 100);
+      },
+      (err) => {
+        log = [m.copyFail(), err].join(' ');
+        console.error(err);
+      },
+    );
   }
 
   onMount(() => {
@@ -39,6 +47,7 @@
     }
   });
 
+  $inspect(log);
   $inspect(callsignInput, callsignStd, passcode).with(console.debug);
 </script>
 
