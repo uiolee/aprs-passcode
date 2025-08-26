@@ -12,6 +12,8 @@
   "loading": "加载中...",
   "noscriptMessage": "您的浏览器不支持 JavaScript 或者您禁用了 JavaScript 功能。\n请启用 JavaScript 功能再试。 ",
   "noscriptTitle": "需要启用 JavaScript 功能！",
+  "paste": "粘贴",
+  "pasteFail": "粘贴失败！",
   "reset": "重置",
   "submit": "提交",
   "title": "APRS 验证码计算器"

@@ -12,6 +12,8 @@
   "loading": "Loading...",
   "noscriptMessage": "Your browser does not support JavaScript, or JavaScript is disabled. \nPlease enable JavaScript and try again. ",
   "noscriptTitle": "JavaScript is REQUIRED!",
+  "paste": "paste",
+  "pasteFail": "Failed paste!",
   "reset": "reset",
   "submit": "submit",
   "title": "APRS Passcode Calculator"
