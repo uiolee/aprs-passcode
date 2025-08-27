@@ -77,13 +77,15 @@
         placeholder={m.inputCallsign()}
         type="text"
       />
-      <input
-        class="outline contrast"
-        disabled={callsignInput.length <= 0}
-        id="reset-callsign"
-        type="reset"
-        value={m.reset()}
-      />
+      {#if callsignInput.length > 0}
+        <input
+          class="outline contrast"
+          disabled={callsignInput.length <= 0}
+          id="reset-callsign"
+          type="reset"
+          value={m.reset()}
+        />
+      {/if}
       <input
         class="outline paste"
         disabled={!clipboard}
