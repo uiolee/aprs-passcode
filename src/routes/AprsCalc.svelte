@@ -41,17 +41,6 @@
     );
   }
 
-  const pasteTextToCallsignInput = (ev) => {
-    return navigator.clipboard
-      .readText()
-      .then((text) => {
-        callsignInput = text.trim();
-      })
-      .catch((err) => {
-        log = [m.pasteFail(), err].join(' ');
-        console.error(err);
-      });
-  };
   onMount(() => {
     const callsignParam = getSearchParams('callsign');
     if (callsignParam) {
@@ -86,14 +75,6 @@
           value={m.reset()}
         />
       {/if}
-      <input
-        class="outline paste"
-        disabled={!clipboard}
-        id="paste-callsignInput"
-        onclick={pasteTextToCallsignInput}
-        type="button"
-        value={m.paste()}
-      />
     </fieldset>
   </form>
   <small id="log">{log}</small>
