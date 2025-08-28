@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Stat } from './shared.svelte';
   import { onMount } from 'svelte';
   import { calcPass, cleanse, getSearchParams } from '$lib/utils';
 
@@ -25,21 +26,25 @@
     };
   });
 
-  function copyToClipboard(ev: MouseEvent) {
-    const value = ev.target?.previousElementSibling?.value;
-    return navigator.clipboard.writeText(value).then(
-      (res) => {
-        ev.target.disabled = true;
-        setTimeout(() => {
-          ev.target.disabled = false;
-        }, 100);
-      },
-      (err) => {
+  const copyToClipboard = async (ev: MouseEvent) => {
+    const target = ev.target as EventTarget;
+    const value = target.previousElementSibling.value;
+    target.disabled = true;
+    Stat.isBusy = true;
+    return await navigator.clipboard
+      .writeText(value)
+      .then(() => {})
+      .catch((err) => {
         log = [m.copyFail(), err].join(' ');
         console.error(err);
-      },
-    );
-  }
+      })
+      .finally(() => {
+        setTimeout(() => {
+          target.disabled = false;
+          Stat.isBusy = false;
+        }, 1);
+      });
+  };
 
   onMount(() => {
     const callsignParam = getSearchParams('callsign');
