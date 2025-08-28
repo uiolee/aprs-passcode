@@ -1,6 +1,4 @@
 <script>
-  import { URLPrefix } from './shared.svelte.js';
-
   const versionText = __VITE_BUILD_VERSION;
 </script>
 
@@ -11,7 +9,7 @@
         >Github</a
       ></span
     >
-    <span><a href={URLPrefix}>{URLPrefix}</a></span>
+    <span></span>
     <span>{versionText}</span>
   </nav>
 </footer>
