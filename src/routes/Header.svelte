@@ -1,9 +1,11 @@
 <script lang="ts">
-  import { Stat } from './shared.svelte';
-
+  import { Stat, URLPrefix } from './shared.svelte';
+  import { dev } from '$app/environment';
   import { getLocale, locales, localizeHref, setLocale } from '$lib/paraglide/runtime';
   import { m } from '$lib/paraglide/messages.js';
   import { page } from '$app/state';
+
+  const titleHref = dev ? '/' : URLPrefix;
 </script>
 
 <header>
@@ -11,17 +13,15 @@
     <ul></ul>
     <ul>
       {#if Stat.cssIsLoad}
-        <li>
-          <div
-            id="title"
+        <li aria-busy={!Stat.isBusy}>
+          <a
             onclick={() => {
-              location.replace('/');
+              location.replace(titleHref);
             }}
-            role="link"
-            tabindex="-1"
+            href={titleHref}
           >
-            <strong aria-busy={!Stat.isBusy}>{m.title()}</strong>
-          </div>
+            <strong>{m.title()}</strong>
+          </a>
         </li>
       {:else if !Stat.cssIsLoad}
         <li aria-busy="true">
@@ -51,9 +51,3 @@
     </ul>
   </nav>
 </header>
-
-<style>
-  #title {
-    cursor: pointer;
-  }
-</style>
