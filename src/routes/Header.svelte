@@ -13,7 +13,7 @@
     <ul></ul>
     <ul>
       {#if Stat.cssIsLoad}
-        <li aria-busy={!Stat.isBusy}>
+        <li aria-busy={Stat.isBusy}>
           <a
             onclick={() => {
               location.replace(titleHref);

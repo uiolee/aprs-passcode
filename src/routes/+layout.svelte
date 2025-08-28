@@ -15,7 +15,7 @@
 
   onMount(() => {
     setTimeout(() => {
-      Stat.isBusy = true;
+      Stat.isBusy = false;
     }, 0);
   });
 </script>
