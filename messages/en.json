@@ -5,7 +5,7 @@
   "callsignInputTip": "Input your callsign here.",
   "copy": "copy",
   "copyFail": "Failed copy!",
-  "description": "A web tool to generate/calculate passcode of APRS for your casllsign.",
+  "description": "A web tool to Compute/Calcuate/Generate APRS-IS's passcode for amateur radio station's callsign.",
   "hello_world": "Hello, {name} from en!",
   "inputCallsign": "Input your Callsign",
   "language": "Language",
@@ -16,5 +16,5 @@
   "pasteFail": "Failed paste!",
   "reset": "reset",
   "submit": "submit",
-  "title": "APRS Passcode Calculator"
+  "title": "APRS-IS Passcode Calculator"
 }

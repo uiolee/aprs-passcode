@@ -1,6 +1,6 @@
 # aprs-passcode
 
-A web tool to generate/calculate passcode of APRS for your casllsign.
+A web tool to Compute\/Calcuate\/Generate APRS-IS's passcode for amateur radio station's callsign.
 
 ## Demo
 

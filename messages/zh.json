@@ -5,7 +5,7 @@
   "callsignInputTip": "在此处输入你的呼号。",
   "copy": "复制",
   "copyFail": "复制失败！",
-  "description": "一个为无线电呼号计算 APRS 验证码的网页工具。",
+  "description": "一个为业余无线电台呼号计算其在 APRS-IS 中的 Passcode (通行码/验证码/口令/密码)的网页工具。",
   "hello_world": "你好, 来自 zh 的{name}！",
   "inputCallsign": "输入呼号",
   "language": "语言",
@@ -16,5 +16,5 @@
   "pasteFail": "粘贴失败！",
   "reset": "重置",
   "submit": "提交",
-  "title": "APRS 验证码计算器"
+  "title": "APRS-IS 验证码计算器"
 }
