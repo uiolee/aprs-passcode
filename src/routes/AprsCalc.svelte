@@ -7,10 +7,19 @@
   import { baseLocale, getLocale } from '$lib/paraglide/runtime';
 
   let callsignInput: string = $state('');
-  let callsignStd: string = $derived(cleanse(callsignInput));
+  let callsignStd: string = $state('');
   let passcode: string = $derived(callsignStd.length > 0 ? String(calcPass(callsignStd)) : '');
   let log: string = $state('');
   let clipboard: boolean = $state(Boolean(navigator.clipboard));
+  let liveMode = $state(true);
+
+  $effect(() => {
+    if (callsignInput.length <= 0) {
+      callsignStd = '';
+    } else if (liveMode) {
+      main();
+    }
+  });
 
   $effect(() => {
     let n: number = 0;
@@ -25,6 +34,10 @@
       }
     };
   });
+
+  const main = () => {
+    callsignStd = cleanse(callsignInput);
+  };
 
   const copyToClipboard = async (ev: MouseEvent) => {
     const target = ev.target as EventTarget;
@@ -57,6 +70,7 @@
 
   $inspect(log);
   $inspect(callsignInput, callsignStd, passcode).with(console.debug);
+  $inspect(liveMode);
 </script>
 
 <article>
@@ -80,10 +94,28 @@
           value={m.reset()}
         />
       {/if}
+      {#if !liveMode}
+        <input
+          id="submit"
+          type="submit"
+          disabled={!(callsignInput.length > 0)}
+          value={m.compute()}
+          onclick={main}
+        />
+      {/if}
     </fieldset>
   </form>
+
+  <fieldset>
+    <label>
+      <input name="livemode" type="checkbox" role="switch" bind:checked={liveMode} />
+      {m.livemode()}
+    </label>
+  </fieldset>
+
   <small id="log">{log}</small>
 </article>
+
 <article>
   <label for="callsignStd"
     >{m.Callsign()}
@@ -102,6 +134,7 @@
       value={m.copy()}
     />
   </fieldset>
+
   <label for="passcode"
     >{m.Passcode()}
     {#if locale !== baseLocale}<span lang={baseLocale}
