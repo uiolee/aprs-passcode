@@ -8,6 +8,9 @@ on:
       - 'package.json'
       - '.github/workflows/deploy.yml'
 
+  pull_request:
+    branches: ['main']
+
   workflow_dispatch:
 
 permissions:
@@ -19,6 +22,7 @@ concurrency:
 
 env:
   default_node_version: 'lts/*'
+  default_pnpm_version: 'latest'
   artifact_name: 'github-pages'
   default_destination: 'build'
   temp_dir: '.temp'
@@ -26,36 +30,41 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       contents: read
       pages: write
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.default_pnpm_version }}
+
         name: Install pnpm
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.default_node_version }}
-          architecture: x64
           cache: 'pnpm'
+
       - name: Install Dependencies
         run: pnpm i
+
       - name: build
         run: pnpm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ env.default_destination }}
 
   deploy_ghp:
+    if: ${{ github.event_name != 'pull_request' }}
     name: Deploy to Github Pages
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -66,22 +75,25 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   deploy_surge:
+    if: ${{ github.event_name != 'pull_request' }}
     name: Deploy to Surge
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     environment:
       name: 'surge'
       url: ${{ steps.get_url.outputs.url }}
+    permissions:
+      contents: read
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: ${{ env.artifact_name }}
           path: ${{ env.temp_dir }}
       - run: |
-          mkdir -p ${{ env.default_destination }} || echo
+          mkdir -p ${{ env.default_destination }} || echo "1"
           tar -xvf ${{ env.temp_dir }}/artifact.tar -C ${{ env.default_destination }}
       - run: npm install -g surge
       - run: surge ${{ env.default_destination }} --token ${{ secrets.SURGE_TOKEN }}
