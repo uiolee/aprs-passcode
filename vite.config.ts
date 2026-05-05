@@ -25,7 +25,7 @@ export default defineConfig({
       project: './project.inlang',
       outdir: './src/lib/paraglide',
       strategy: ['url', 'localStorage', 'preferredLanguage', 'baseLocale'],
-      disableAsyncLocalStorage: true,
+      disableAsyncLocalStorage: false,
     }),
   ],
   define: {

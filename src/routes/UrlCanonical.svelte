@@ -1,21 +1,17 @@
 <script lang="ts">
-	const { pageUrl } = $props();
+  const { pageUrl } = $props();
 
-	import {
-		deLocalizeUrl,
-		localizeUrl,
-		locales,
-	} from '$lib/paraglide/runtime';
-	import { URLPrefix } from './shared.svelte';
+  import { deLocalizeUrl, localizeUrl, locales } from '$lib/paraglide/runtime';
+  import { URLPrefix } from './shared.svelte';
 
-	let urlCanonical = new URL(pageUrl.pathname, URLPrefix);
+  let urlCanonical = new URL(pageUrl.pathname, URLPrefix);
 
-	const alternateUrls: { [K in (typeof locales)[number]]?: URL } = {};
-	const urlDefault = deLocalizeUrl(urlCanonical);
-	for (const locale of locales) {
-			const urlLocalized = localizeUrl(urlCanonical, { locale });
-			alternateUrls[locale] = urlLocalized;
-	}
+  const alternateUrls: { [K in (typeof locales)[number]]?: URL } = {};
+  const urlDefault = deLocalizeUrl(urlCanonical);
+  for (const locale of locales) {
+    const urlLocalized = localizeUrl(urlCanonical, { locale });
+    alternateUrls[locale] = urlLocalized;
+  }
 </script>
 
 <link href={urlCanonical.href} rel="canonical" />

@@ -5,6 +5,10 @@ const CI = Boolean(process.env.CI || false);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  compilerOptions: {
+    // Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+    runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true),
+  },
   // Consult https://svelte.dev/docs/kit/integrations
   // for more information about preprocessors
   preprocess: vitePreprocess(),
@@ -18,6 +22,9 @@ const config = {
       precompress: CI,
       strict: true,
     }),
+    paths: {
+      relative: false,
+    },
     csp: {
       directives: {
         'default-src': ['none'],
