@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  default_node_version: 'lts/*'
+  default_node_version: ''
   default_pnpm_version: 'latest'
   artifact_name: 'github-pages'
   default_destination: 'build'
