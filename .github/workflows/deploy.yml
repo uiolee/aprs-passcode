@@ -4,8 +4,13 @@ on:
   push:
     branches: ['main']
     paths:
+      - 'project.inlang/**'
+      - 'scripts/**'
       - 'src/**'
+      - 'static/**'
+      - '*.{js,ts}'
       - 'package.json'
+      - 'pnpm-*.yaml'
       - '.github/workflows/deploy.yml'
 
   pull_request:
@@ -22,7 +27,7 @@ concurrency:
 
 env:
   default_node_version: ''
-  default_pnpm_version: 'latest'
+  default_pnpm_version: '10'
   artifact_name: 'github-pages'
   default_destination: 'build'
   temp_dir: '.temp'
